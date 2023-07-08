@@ -45,19 +45,16 @@ function App() {
   const onAgeHandler = (e) => {
     let selectedAge = e.target.value;
     if (selectedAge === "모든 연령") {
-      selectedAge = "";
-      setAges(ages.filter((age) => age === selectedAge));
-    } else if (ages.indexOf("") >= 0 && ages.length >= 0 && selectedAge) {
-      alert("모든 연령을 선택하셨습니다. 모든연령 선택을 제거해주세요.");
-      return;
+      setAges(["10", "20", "30", "40", "50", "60"]);
     } else {
       selectedAge = selectedAge.slice(0, 2);
-    }
-
-    if (ages.indexOf(selectedAge) === -1) {
-      setAges((current) => [...current, selectedAge]);
+      if (ages.indexOf(selectedAge) === -1) {
+        setAges((current) => [...current, selectedAge]);
+      }
     }
   };
+
+  console.log(ages);
 
   //삭제토글 구현
   //   const newAge = age.filter((_age) => selectedAge !== _age);
@@ -141,6 +138,9 @@ function App() {
           device
         </Selection>
       </div>
+      {ages.map((age) => (
+        <button>{age}</button>
+      ))}
       <Confirm onApiStatusHandler={onApiStatusHandler} />
       {chartStatus && <Chart />}
     </div>
