@@ -5,11 +5,9 @@ interface CommonState {
     startDate: string;
     endDate: string;
     timeUnit: string;
-    category: string;
-    keyword: string;
-    device: string;
-    gender: string;
-    ages: string;
+    title: string;
+    keyword: string[];
+    data: object[];
   };
 }
 
@@ -18,11 +16,9 @@ const initialState: CommonState = {
     startDate: "",
     endDate: "",
     timeUnit: "",
-    category: "",
-    keyword: "",
-    device: "",
-    gender: "",
-    ages: "",
+    title: "",
+    keyword: [],
+    data: [],
   },
 };
 
@@ -33,33 +29,8 @@ export const userSlice = createSlice({
     confirm: (state, action: PayloadAction<CommonState["value"]>) => {
       state.value = action.payload;
     },
-    // setStartDate(state, action: PayloadAction<string>) {
-    //   state.startDate = action.payload;
-    // },
-    // setEndDate(state, action: PayloadAction<string>) {
-    //   state.startDate = action.payload;
-    // },
-    // setTimeUnit(state, action: PayloadAction<string>) {
-    //   state.startDate = action.payload;
-    // },
-    // setCategory(state, action: PayloadAction<string>) {
-    //   state.startDate = action.payload;
-    // },
-    // setKeyword(state, action: PayloadAction<string>) {
-    //   state.startDate = action.payload;
-    // },
-    // setDevice(state, action: PayloadAction<string>) {
-    //   state.startDate = action.payload;
-    // },
-    // setGender(state, action: PayloadAction<string>) {
-    //   state.startDate = action.payload;
-    // },
-    // setAges(state, action: PayloadAction<string>) {
-    //   state.startDate = action.payload;
-    // },
   },
 });
 
 export const { confirm } = userSlice.actions;
-
 export default userSlice.reducer;

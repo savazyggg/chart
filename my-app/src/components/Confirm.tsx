@@ -3,21 +3,20 @@ import { useDispatch } from "react-redux";
 import { confirm } from "../store/userSlice";
 import naverApi from "../api/naverApi";
 
-const Confirm = ({ onSaveInfo }) => {
+const Confirm = ({ onApiStatusHandler }) => {
   const dispatch = useDispatch();
-  const userInfo = onSaveInfo();
-  const onPostInfo = () => {
-    naverApi(userInfo);
+
+  const onPostInfo = async () => {
+    const apiStatus = await onApiStatusHandler();
+
     dispatch(
       confirm({
-        startDate: userInfo.startDate,
-        endDate: userInfo.endDate,
-        timeUnit: userInfo.timeUnit,
-        category: userInfo.category,
-        keyword: userInfo.keyword,
-        device: userInfo.device,
-        gender: userInfo.gender,
-        ages: userInfo.ages,
+        startDate: apiStatus.startDate,
+        endDate: apiStatus.endDate,
+        timeUnit: apiStatus.timeUnit,
+        title: apiStatus.results[0].title,
+        keyword: apiStatus.results[0].keyword,
+        data: apiStatus.results[0].data,
       })
     );
   };

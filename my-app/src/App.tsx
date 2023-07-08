@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import Input from "../src/components/Input";
 import Confirm from "./components/Confirm";
-import { useSelector } from "react-redux";
 import Selection from "./components/Selection";
-
+import Chart from "./components/Chart";
+import naverApi from "./api/naverApi";
 function App() {
-  const user = useSelector((state) => state.user.value);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [timeUnit, setTimeUnit] = useState("");
@@ -14,6 +13,13 @@ function App() {
   const [device, setDevice] = useState("");
   const [gender, setGender] = useState("");
   const [ages, setAges] = useState<string[]>([]);
+  const [chartStatus, setChartStatus] = useState(false);
+
+  const onApiStatusHandler = async () => {
+    const getApi = await naverApi(userSelect);
+    setChartStatus(true);
+    return getApi;
+  };
 
   const onStartDateHandler = (e) => {
     setStartDate(e.target.value);
@@ -35,10 +41,15 @@ function App() {
     setDevice(selectedDevice);
   };
 
+  //설정 안 함 -> "" 이아니라 모든 나이 숫자가 빼열로 있어야됨; 수정필요
   const onAgeHandler = (e) => {
     let selectedAge = e.target.value;
     if (selectedAge === "모든 연령") {
       selectedAge = "";
+      setAges(ages.filter((age) => age === selectedAge));
+    } else if (ages.indexOf("") >= 0 && ages.length >= 0 && selectedAge) {
+      alert("모든 연령을 선택하셨습니다. 모든연령 선택을 제거해주세요.");
+      return;
     } else {
       selectedAge = selectedAge.slice(0, 2);
     }
@@ -52,7 +63,6 @@ function App() {
   //   const newAge = age.filter((_age) => selectedAge !== _age);
   //   setAge(newAge);
 
-  console.log(ages);
   const onGenderHandler = (e) => {
     let selectedGender = e.target.value;
     selectedGender =
@@ -89,16 +99,8 @@ function App() {
   const selectGenderData = ["여성", "남성"];
   const selectDeviceData = ["모든 기기", "PC", "Mobile"];
 
-  const onSaveInfo = () => {
-    console.log(userSelect);
-    return userSelect;
-  };
-
   return (
     <div className="App">
-      <div>
-        <p>{user.startDate}</p>
-      </div>
       <div>
         <Input type="date" value={startDate} onChange={onStartDateHandler}>
           시작일자:
@@ -139,7 +141,8 @@ function App() {
           device
         </Selection>
       </div>
-      <Confirm onSaveInfo={onSaveInfo} />
+      <Confirm onApiStatusHandler={onApiStatusHandler} />
+      {chartStatus && <Chart />}
     </div>
   );
 }

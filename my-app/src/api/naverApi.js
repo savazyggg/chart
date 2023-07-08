@@ -4,7 +4,7 @@ const fetchData = async (userInfo) => {
   const client_id = process.env.REACT_APP_NAVER_CLIENT_ID;
   const client_secret = process.env.REACT_APP_NAVER_CLIENT_SECRET;
   const api_url = "api/v1/datalab/shopping/category/keyword/age";
-  console.log("api: " + userInfo.startDate);
+
   try {
     const response = await axios.post(
       api_url,
@@ -26,7 +26,7 @@ const fetchData = async (userInfo) => {
         },
       }
     );
-    console.log("res", response);
+    return response.data;
   } catch (e) {
     console.log(e);
   }
