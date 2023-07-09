@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const fetchData = async (userInfo) => {
+const fetchData = (userInfo) => {
   const client_id = process.env.REACT_APP_NAVER_CLIENT_ID;
   const client_secret = process.env.REACT_APP_NAVER_CLIENT_SECRET;
   const api_url = "api/v1/datalab/shopping/category/keyword/age";
 
   try {
-    const response = await axios.post(
+    const response = axios.post(
       api_url,
       {
         startDate: userInfo.startDate,

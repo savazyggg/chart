@@ -6,10 +6,17 @@ import reportWebVitals from "./reportWebVitals";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import userReducer from "./store/userSlice";
+import createSagaMiddleware from "@redux-saga/core";
+import userDataSaga from "./userDataSaga";
 
+const saga = createSagaMiddleware();
 const store = configureStore({
   reducer: { user: userReducer },
+  middleware: [saga],
 });
+
+saga.run(userDataSaga);
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );

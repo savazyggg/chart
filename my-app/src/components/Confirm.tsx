@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { confirm } from "../store/userSlice";
 import naverApi from "../api/naverApi";
 
-const Confirm = ({ onApiStatusHandler }) => {
+const Confirm = ({ onApiStatusHandler, isDisable }) => {
   const dispatch = useDispatch();
 
   const onPostInfo = async () => {
@@ -22,7 +22,12 @@ const Confirm = ({ onApiStatusHandler }) => {
   };
   return (
     <>
-      <button onClick={onPostInfo}>확인</button>
+      <button
+        style={isDisable ? { opacity: 0.5, cursor: "not-allowed" } : {}}
+        onClick={onPostInfo}
+      >
+        확인
+      </button>
     </>
   );
 };

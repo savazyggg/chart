@@ -12,7 +12,10 @@ import {
 
 const Chart = () => {
   const user = useSelector((state) => state.user.value);
+  
   const userData = user.data;
+  
+  
   const mergedData = userData.reduce((acc, cur) => {
     const index = acc.findIndex((x) => x.기간 === cur.period);
     if (index === -1) {
