@@ -5,8 +5,8 @@ const fetchData = (userInfo) => {
   const client_secret = process.env.REACT_APP_NAVER_CLIENT_SECRET;
   const api_url = "api/v1/datalab/shopping/category/keyword/age";
 
-  try {
-    const response = axios.post(
+  axios
+    .post(
       api_url,
       {
         startDate: userInfo.startDate,
@@ -25,11 +25,8 @@ const fetchData = (userInfo) => {
           "X-Naver-Client-Secret": client_secret,
         },
       }
-    );
-    return response.data;
-  } catch (e) {
-    console.log(e);
-  }
+    )
+    .then((response) => response.data);
 };
 
 export default fetchData;

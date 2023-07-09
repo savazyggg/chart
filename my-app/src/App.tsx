@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { getUsersDataSuccess } from "./store/userSliceCopy";
 import Input from "../src/components/Input";
 import Confirm from "./components/Confirm";
 import Selection from "./components/Selection";
@@ -7,7 +8,21 @@ import Chart from "./components/Chart";
 import naverApi from "./api/naverApi";
 
 function App() {
-  return <div className="App"></div>;
+  const usersData = useSelector((state) => state.user.value);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log("start");
+    dispatch({ type: "user/getUsersDataFetch" });
+  }, [dispatch, usersData]);
+
+  console.log(usersData);
+
+  return (
+    <div className="App">
+      <p></p>
+    </div>
+  );
   // const [startDate, setStartDate] = useState("");
   // const [endDate, setEndDate] = useState("");
   // const [timeUnit, setTimeUnit] = useState("");

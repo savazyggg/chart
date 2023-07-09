@@ -1,6 +1,7 @@
-import { call, put, takeEvery } from "redux-saga/effects";
+import { AxiosResponse } from "axios";
+import { call, put, takeLatest } from "redux-saga/effects";
 import fetchData from "./api/naverApi";
-import { getUsersDataSuccess } from "./store/userSlice copy";
+import { getUsersDataSuccess } from "./store/userSliceCopy";
 
 const userInfo = {
   startDate: "2017-08-01",
@@ -13,12 +14,21 @@ const userInfo = {
   ages: ["10", "20"],
 };
 
-function* ageGetUsersDatafetch(): Generator<any, any, any> {
-  const users = yield call(fetchData, userInfo);
-  yield put(getUsersDataSuccess(users));
+function* ageGetUsersDatafetch() {
+  try {
+    const response: AxiosResponse = yield call(fetchData, userInfo);
+    console.log("res", response); // 데이터 못받음
+    yield put(getUsersDataSuccess(response.data));
+    console.log("after", response);
+  } catch (e) {
+    console.log(e);
+  }
 }
+
 function* userDataSaga() {
-  yield takeEvery("user/getUsersDataFetch", ageGetUsersDatafetch);
+  yield takeLatest("user/getUsersDataFetch", ageGetUsersDatafetch);
 }
 
 export default userDataSaga;
+
+export type ReducerType = ReturnType<typeof userDataSaga>;
