@@ -3,6 +3,7 @@ import Input from "../src/components/Input";
 import Confirm from "./components/Confirm";
 import Selection from "./components/Selection";
 import Chart from "./components/Chart";
+import { UserSelect } from "./assets/type";
 
 function App() {
   const [startDate, setStartDate] = useState("");
@@ -16,7 +17,7 @@ function App() {
   const [chartStatus, setChartStatus] = useState(false);
   const [isDisable, setIsDisable] = useState(true);
 
-  const userSelect = {
+  const userSelect: UserSelect = {
     startDate,
     endDate,
     timeUnit,
@@ -45,14 +46,11 @@ function App() {
   };
   const onDeviceHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     let selectedDevice = e.target.value;
-
     selectedDevice =
       selectedDevice === "PC" ? "pc" : selectedDevice === "Mobile" ? "mo" : "";
-
     setDevice(selectedDevice);
   };
 
-  //설정 안 함 -> "" 이아니라 모든 나이 숫자가 빼열로 있어야됨; 수정필요
   const onAgeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     let selectedAge = e.target.value;
     if (selectedAge === "모든 연령") {

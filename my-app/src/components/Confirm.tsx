@@ -1,17 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-
+import { UserSelect } from "../assets/type";
 interface Props {
   onApiStatusHandler: () => void;
   isDisable: boolean;
-  userSelect: {
-    startDate: string;
-    endDate: string;
-    timeUnit: string;
-    title: string;
-    keyword: string[];
-    data: { [key: string]: { [key: string]: number }[] };
-  };
+  userSelect: UserSelect;
 }
 
 const Confirm: React.FC<Props> = ({

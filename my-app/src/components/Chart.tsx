@@ -10,24 +10,26 @@ import {
   Legend,
 } from "recharts";
 import utils from "../assets/utils";
+import { UserData, MergedData } from "../assets/type";
 
 const Chart = () => {
   const usersData = useSelector((state: any) => state.user.value);
   console.log("chart", usersData);
 
-  let mergedData =
-    usersData &&
-    usersData.data.reduce((acc, cur) => {
+  const mergedData: MergedData[] = usersData.data.reduce(
+    (acc: MergedData[], cur: UserData) => {
       const index = acc.findIndex((x) => x.기간 === cur.period);
       if (index === -1) {
-        const obj = { 기간: cur.period };
+        const obj: MergedData = { 기간: cur.period };
         obj[cur.group] = cur.ratio;
         acc.push(obj);
       } else {
         acc[index][cur.group] = cur.ratio;
       }
       return acc;
-    }, []);
+    },
+    []
+  );
 
   console.log("mergedata", mergedData);
 
