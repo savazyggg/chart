@@ -39,13 +39,19 @@ function App() {
   const onEndDateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEndDate(e.target.value);
   };
-  const onTimeUnitHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTimeUnit(e.target.value);
-  };
+
   const onKeywordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
   };
-  const onDeviceHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+  const onCategoryHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCategory(e.target.value);
+  };
+
+  const onTimeUnitHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setTimeUnit(e.target.value);
+  };
+  const onDeviceHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     let selectedDevice = e.target.value;
     selectedDevice =
       selectedDevice === utils.selectDeviceData[1]
@@ -56,7 +62,7 @@ function App() {
     setDevice(selectedDevice);
   };
 
-  const onAgeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onAgeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     let selectedAge = e.target.value;
     if (selectedAge === utils.selcetAgeData[0]) {
       setAges(["10", "20", "30", "40", "50", "60"]);
@@ -73,7 +79,7 @@ function App() {
     setAges(newAge);
   };
 
-  const onGenderHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onGenderHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     let selectedGender = e.target.value;
     selectedGender =
       selectedGender === utils.selectGenderData[0]
@@ -83,10 +89,6 @@ function App() {
         : "";
 
     setGender(selectedGender);
-  };
-
-  const onCategoryHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCategory(e.target.value);
   };
   useEffect(() => {
     const isAllSelected =

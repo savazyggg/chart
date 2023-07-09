@@ -1,6 +1,13 @@
 import React from "react";
 
-const Input = ({ type, onChange, value, children }) => {
+interface Props {
+  type: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string;
+  children: string;
+}
+
+const Input: React.FC<Props> = ({ type, onChange, value, children }) => {
   return (
     <>
       <label htmlFor={value}>{children}</label>

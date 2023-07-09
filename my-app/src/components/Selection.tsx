@@ -1,6 +1,13 @@
 import React from "react";
 
-const Selection = ({ value, onChange, children, datas }) => {
+interface Props {
+  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  value: string | string[];
+  children: string;
+  datas: string[];
+}
+
+const Selection: React.FC<Props> = ({ value, onChange, children, datas }) => {
   return (
     <select id={children} value={value} onChange={onChange}>
       <option value="">{children}</option>
