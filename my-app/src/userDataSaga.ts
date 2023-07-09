@@ -3,18 +3,20 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import fetchData from "./api/naverApi";
 import { getUsersDataSuccess } from "./store/userSlice";
 
-// const userInfo = {
-//   startDate: "2017-08-01",
-//   endDate: "2017-09-30",
-//   timeUnit: "month",
-//   category: "50000000",
-//   keyword: "정장",
-//   device: "",
-//   gender: "",
-//   ages: ["10", "20"],
-// };
+interface GetUsersDataFetchAction {
+  type: "user/getUsersDataFetch";
+  payload: {
+    startDate: string;
+    endDate: string;
+    timeUnit: string;
+    title: string;
+    keyword: string[];
+    data: { [key: string]: { [key: string]: number }[] };
+  };
+}
 
-function* ageGetUsersDatafetch(action) {
+type UserAction = GetUsersDataFetchAction;
+function* ageGetUsersDatafetch(action: UserAction) {
   const userSelect = action.payload;
   try {
     const response: AxiosResponse = yield call(fetchData, userSelect);
@@ -39,4 +41,3 @@ function* userDataSaga() {
 }
 
 export default userDataSaga;
-//export type ReducerType = ReturnType<typeof userDataSaga>;

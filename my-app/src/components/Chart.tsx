@@ -9,7 +9,7 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-import colorSet from "../assets/utils";
+import utils from "../assets/utils";
 
 const Chart = () => {
   const usersData = useSelector((state: any) => state.user.value);
@@ -46,7 +46,7 @@ const Chart = () => {
             key={key}
             type="monotone"
             dataKey={key}
-            stroke={colorSet(key)}
+            stroke={utils.colorSet(key)}
             activeDot={{ r: 8 }}
           />
         ))}

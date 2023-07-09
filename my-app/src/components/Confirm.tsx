@@ -1,7 +1,24 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 
-const Confirm = ({ onApiStatusHandler, isDisable, userSelect }) => {
+interface Props {
+  onApiStatusHandler: () => void;
+  isDisable: boolean;
+  userSelect: {
+    startDate: string;
+    endDate: string;
+    timeUnit: string;
+    title: string;
+    keyword: string[];
+    data: { [key: string]: { [key: string]: number }[] };
+  };
+}
+
+const Confirm: React.FC<Props> = ({
+  onApiStatusHandler,
+  isDisable,
+  userSelect,
+}) => {
   console.log("confirm", userSelect);
 
   const dispatch = useDispatch();
