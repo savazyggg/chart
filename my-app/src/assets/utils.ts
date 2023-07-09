@@ -1,5 +1,3 @@
-import React from "react";
-
 const utils = {
   colorSet: (key: string) => {
     const color = [
@@ -29,6 +27,28 @@ const utils = {
         return color[0];
     }
   },
+  selectDateData: ["month", "week", "date"],
+  selcetAgeData: [
+    "모든 연령",
+    "10대",
+    "20대",
+    "30대",
+    "40대",
+    "50대",
+    "60세 이상",
+  ],
+  selectGenderData: ["여성", "남성", "f", "m"],
+  selectDeviceData: ["모든 기기", "PC", "Mobile", "pc", "mo"],
+  labels: [
+    "시작일자:",
+    "종료일자:",
+    "카테고리:",
+    "키워드:",
+    "timeUnit",
+    "age",
+    "gender",
+    "device",
+  ],
 };
 
 export default utils;

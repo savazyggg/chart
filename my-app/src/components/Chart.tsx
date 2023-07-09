@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import {
   LineChart,
@@ -17,16 +16,16 @@ const Chart = () => {
   console.log("chart", usersData);
 
   const mergedData: MergedData[] = usersData.data.reduce(
-    (acc: MergedData[], cur: UserData) => {
-      const index = acc.findIndex((x) => x.기간 === cur.period);
+    (mergedObj: MergedData[], exMergeData: UserData) => {
+      const index = mergedObj.findIndex((x) => x.기간 === exMergeData.period);
       if (index === -1) {
-        const obj: MergedData = { 기간: cur.period };
-        obj[cur.group] = cur.ratio;
-        acc.push(obj);
+        const mergeDataObj: MergedData = { 기간: exMergeData.period };
+        mergeDataObj[exMergeData.group] = exMergeData.ratio;
+        mergedObj.push(mergeDataObj);
       } else {
-        acc[index][cur.group] = cur.ratio;
+        mergedObj[index][exMergeData.group] = exMergeData.ratio;
       }
-      return acc;
+      return mergedObj;
     },
     []
   );

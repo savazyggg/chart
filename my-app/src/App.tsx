@@ -4,6 +4,7 @@ import Confirm from "./components/Confirm";
 import Selection from "./components/Selection";
 import Chart from "./components/Chart";
 import { UserSelect } from "./assets/type";
+import utils from "./assets/utils";
 
 function App() {
   const [startDate, setStartDate] = useState("");
@@ -47,13 +48,17 @@ function App() {
   const onDeviceHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     let selectedDevice = e.target.value;
     selectedDevice =
-      selectedDevice === "PC" ? "pc" : selectedDevice === "Mobile" ? "mo" : "";
+      selectedDevice === utils.selectDeviceData[1]
+        ? utils.selectDeviceData[3]
+        : selectedDevice === utils.selectDeviceData[2]
+        ? utils.selectDeviceData[4]
+        : "";
     setDevice(selectedDevice);
   };
 
   const onAgeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     let selectedAge = e.target.value;
-    if (selectedAge === "모든 연령") {
+    if (selectedAge === utils.selcetAgeData[0]) {
       setAges(["10", "20", "30", "40", "50", "60"]);
     } else {
       selectedAge = selectedAge.slice(0, 2);
@@ -71,7 +76,11 @@ function App() {
   const onGenderHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     let selectedGender = e.target.value;
     selectedGender =
-      selectedGender === "여성" ? "f" : selectedGender === "남성" ? "m" : "";
+      selectedGender === utils.selectGenderData[0]
+        ? utils.selectGenderData[2]
+        : selectedGender === utils.selectGenderData[1]
+        ? utils.selectGenderData[3]
+        : "";
 
     setGender(selectedGender);
   };
@@ -79,73 +88,61 @@ function App() {
   const onCategoryHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCategory(e.target.value);
   };
-
-  const selectDateData = ["month", "week", "date"];
-  const selcetAgeData = [
-    "모든 연령",
-    "10대",
-    "20대",
-    "30대",
-    "40대",
-    "50대",
-    "60세 이상",
-  ];
-  const selectGenderData = ["여성", "남성"];
-  const selectDeviceData = ["모든 기기", "PC", "Mobile"];
-
   useEffect(() => {
-    if (
+    const isAllSelected =
       startDate &&
       endDate &&
       timeUnit &&
       category &&
       keyword &&
-      ages.length > 0
-    ) {
-      setIsDisable(false);
-    }
+      ages.length > 0;
+    setIsDisable(!isAllSelected);
   }, [startDate, endDate, timeUnit, category, keyword, ages.length]);
 
   return (
     <div className="App">
       <div>
         <Input type="date" value={startDate} onChange={onStartDateHandler}>
-          시작일자:
+          {utils.labels[0]}
         </Input>
         <Input type="date" value={endDate} onChange={onEndDateHandler}>
-          종료일자:
+          {utils.labels[1]}
         </Input>
         <Input type="text" value={category} onChange={onCategoryHandler}>
-          카테고리:
+          {utils.labels[2]}
         </Input>
         <Input type="text" value={keyword} onChange={onKeywordHandler}>
-          키워드:
+          {utils.labels[3]}
         </Input>
       </div>
       <div>
         <Selection
           value={timeUnit}
           onChange={onTimeUnitHandler}
-          datas={selectDateData}
+          datas={utils.selectDateData}
         >
-          timeUnit
+          {utils.labels[4]}
         </Selection>
-        <Selection value={device} onChange={onAgeHandler} datas={selcetAgeData}>
-          age
+        <Selection
+          value={device}
+          onChange={onAgeHandler}
+          datas={utils.selcetAgeData}
+        >
+          {utils.labels[5]}
         </Selection>
         <Selection
           value={gender}
           onChange={onGenderHandler}
-          datas={selectGenderData}
+          datas={utils.selectGenderData}
         >
-          gender
+          {utils.labels[6]}
         </Selection>
         <Selection
           value={ages}
           onChange={onDeviceHandler}
-          datas={selectDeviceData}
+          datas={utils.selectDeviceData}
         >
-          device
+          {utils.labels[7]}
         </Selection>
       </div>
       {ages.map((age, index) => (
