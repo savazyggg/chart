@@ -9,7 +9,6 @@ interface CommonState {
     keyword: string[];
     data: object[];
   };
-  isLodding: boolean;
 }
 
 const initialState: CommonState = {
@@ -21,29 +20,17 @@ const initialState: CommonState = {
     keyword: [],
     data: [],
   },
-  isLodding: false,
 };
 
-const userSlice = createSlice({
+export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    getUsersDataFetch: (state) => {
-      state.isLodding = true;
-    },
-    getUsersDataSuccess: (
-      state,
-      action: PayloadAction<CommonState["value"]>
-    ) => {
+    confirm: (state, action: PayloadAction<CommonState["value"]>) => {
       state.value = action.payload;
-      state.isLodding = false;
-    },
-    getUsersDataFailure: (state) => {
-      state.isLodding = false;
     },
   },
 });
 
-export const { getUsersDataFetch, getUsersDataSuccess, getUsersDataFailure } =
-  userSlice.actions;
+export const { confirm } = userSlice.actions;
 export default userSlice.reducer;

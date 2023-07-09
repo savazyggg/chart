@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUsersDataSuccess } from "./store/userSliceCopy";
+import { getUsersDataSuccess } from "./store/userSlice";
 import Input from "../src/components/Input";
 import Confirm from "./components/Confirm";
 import Selection from "./components/Selection";
@@ -14,9 +14,9 @@ function App() {
   useEffect(() => {
     console.log("start");
     dispatch({ type: "user/getUsersDataFetch" });
-  }, [dispatch, usersData]);
+  }, [dispatch]);
 
-  console.log(usersData);
+  console.log("userData", usersData);
 
   return (
     <div className="App">

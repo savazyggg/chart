@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import { call, put, takeLatest } from "redux-saga/effects";
 import fetchData from "./api/naverApi";
-import { getUsersDataSuccess } from "./store/userSliceCopy";
+import { getUsersDataSuccess } from "./store/userSlice";
 
 const userInfo = {
   startDate: "2017-08-01",
@@ -17,9 +17,17 @@ const userInfo = {
 function* ageGetUsersDatafetch() {
   try {
     const response: AxiosResponse = yield call(fetchData, userInfo);
-    console.log("res", response); // 데이터 못받음
-    yield put(getUsersDataSuccess(response.data));
-    console.log("after", response);
+    console.log("res", response);
+    yield put(
+      getUsersDataSuccess({
+        startDate: response.data.startDate,
+        endDate: response.data.endDate,
+        timeUnit: response.data.timeUnit,
+        title: response.data.results[0].title,
+        keyword: response.data.results[0].keyword,
+        data: response.data.results[0].data,
+      })
+    );
   } catch (e) {
     console.log(e);
   }

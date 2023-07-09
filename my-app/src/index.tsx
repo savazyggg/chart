@@ -5,7 +5,7 @@ import App from "./App";
 
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
-import userReducer from "./store/userSliceCopy";
+import userReducer from "./store/userSlice";
 import createSagaMiddleware from "@redux-saga/core";
 import userDataSaga from "./userDataSaga";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { confirm } from "../store/userSlice";
+import { confirm } from "../store/userSliced";
 import naverApi from "../api/naverApi";
 
 const Confirm = ({ onApiStatusHandler, isDisable }) => {

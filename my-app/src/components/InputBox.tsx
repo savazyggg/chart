@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { confirm } from "../store/userSlice";
+import { confirm } from "../store/userSliced";
 
 const InputBox = ({ type, children, name }) => {
   const dispatch = useDispatch();
