@@ -1,30 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { confirm } from "../store/userSliced";
-import naverApi from "../api/naverApi";
 
-const Confirm = ({ onApiStatusHandler, isDisable }) => {
+const Confirm = ({ onApiStatusHandler, isDisable, userSelect }) => {
+  console.log("confirm", userSelect);
+
   const dispatch = useDispatch();
 
-  const onPostInfo = async () => {
-    const apiStatus = await onApiStatusHandler();
+  function handleClick() {
+    onApiStatusHandler();
+    dispatch({ type: "user/getUsersDataFetch", payload: userSelect });
+  }
 
-    dispatch(
-      confirm({
-        startDate: apiStatus.startDate,
-        endDate: apiStatus.endDate,
-        timeUnit: apiStatus.timeUnit,
-        title: apiStatus.results[0].title,
-        keyword: apiStatus.results[0].keyword,
-        data: apiStatus.results[0].data,
-      })
-    );
-  };
   return (
     <>
       <button
         style={isDisable ? { opacity: 0.5, cursor: "not-allowed" } : {}}
-        onClick={onPostInfo}
+        onClick={handleClick}
       >
         확인
       </button>
