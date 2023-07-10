@@ -23,7 +23,7 @@ const Confirm: React.FC<Props> = React.memo(
       <>
         <Button
           style={isDisable ? { opacity: 0.5, cursor: "not-allowed" } : {}}
-          onClick={onFetchHandler}
+          onClick={isDisable ? undefined : onFetchHandler}
         >
           조회
         </Button>

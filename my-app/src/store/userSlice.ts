@@ -1,16 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface CommonState {
-  value: {
-    startDate: string;
-    endDate: string;
-    timeUnit: string;
-    title: string;
-    keyword: string[];
-    data: object[];
-  };
-  isLodding: boolean;
-}
+import { CommonState } from "../assets/types";
 
 const initialState: CommonState = {
   value: {
@@ -21,7 +10,7 @@ const initialState: CommonState = {
     keyword: [],
     data: [],
   },
-  isLodding: false,
+  isLoading: false,
 };
 
 const userSlice = createSlice({
@@ -29,21 +18,17 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     getUsersDataFetch: (state) => {
-      state.isLodding = true;
+      state.isLoading = true;
     },
     getUsersDataSuccess: (
       state,
       action: PayloadAction<CommonState["value"]>
     ) => {
       state.value = action.payload;
-      state.isLodding = false;
-    },
-    getUsersDataFailure: (state) => {
-      state.isLodding = false;
+      state.isLoading = false;
     },
   },
 });
 
-export const { getUsersDataFetch, getUsersDataSuccess, getUsersDataFailure } =
-  userSlice.actions;
+export const { getUsersDataFetch, getUsersDataSuccess } = userSlice.actions;
 export default userSlice.reducer;

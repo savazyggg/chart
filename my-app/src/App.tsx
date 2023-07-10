@@ -105,6 +105,15 @@ function App() {
     setIsDisable(!isAllSelected);
   }, [startDate, endDate, timeUnit, category, keyword, ages.length]);
 
+  useEffect(() => {
+    const localStorageData = localStorage.getItem("persist:root");
+    const persistData = localStorageData && JSON.parse(localStorageData);
+    const persistUserData = JSON.parse(persistData.user);
+    if (persistUserData.value.data) {
+      setChartStatus(true);
+    }
+  }, []);
+
   return (
     <div className="App">
       <div>

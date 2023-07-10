@@ -2,21 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-
-import { configureStore } from "@reduxjs/toolkit";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistor, store } from "./store/index";
 import { Provider } from "react-redux";
-import userReducer from "./store/userSlice";
-import createSagaMiddleware from "@redux-saga/core";
-import userDataSaga from "./userDataSaga";
-
-const saga = createSagaMiddleware();
-
-const store = configureStore({
-  reducer: { user: userReducer },
-  middleware: [saga],
-});
-
-saga.run(userDataSaga);
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -24,7 +12,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );
