@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import Input from "../src/components/Input";
+import React, { useCallback, useEffect, useState } from "react";
+import Input from "./components/ui/Input";
 import Confirm from "./components/Confirm";
-import Selection from "./components/Selection";
+import Selection from "./components/ui/Selection";
 import Chart from "./components/Chart";
-import { UserSelect } from "./assets/type";
-import utils from "./assets/utils";
-
+import { UserSelect } from "./assets/types";
+import options from "./assets/options";
+import "./App.css";
 function App() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -25,14 +25,24 @@ function App() {
     timeUnit,
     category,
     keyword,
-    device,
-    gender,
+    device:
+      device === options.selectDeviceData[1]
+        ? "pc"
+        : device === options.selectDeviceData[2]
+        ? "mo"
+        : "",
+    gender:
+      gender === options.selectGenderData[0]
+        ? "f"
+        : gender === options.selectGenderData[1]
+        ? "m"
+        : "",
     ages,
   };
 
-  const onApiStatusHandler = () => {
+  const onChartStatusHandler = useCallback(() => {
     setChartStatus(true);
-  };
+  }, [setChartStatus]);
 
   const onStartDateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStartDate(e.target.value);
@@ -53,20 +63,13 @@ function App() {
     setTimeUnit(e.target.value);
   };
   const onDeviceHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    let selectedDevice = e.target.value;
-    selectedDevice =
-      selectedDevice === utils.selectDeviceData[1]
-        ? "pc"
-        : selectedDevice === utils.selectDeviceData[2]
-        ? "mo"
-        : "";
-    setDevice(selectedDevice);
+    setDevice(e.target.value);
   };
 
   const onAgeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setAge(e.target.value);
     let selectedAge = e.target.value;
-    if (selectedAge === utils.selcetAgeData[0]) {
+    if (selectedAge === options.selcetAgeData[0]) {
       setAges(["10", "20", "30", "40", "50", "60"]);
     } else {
       selectedAge = selectedAge.slice(0, 2);
@@ -76,22 +79,15 @@ function App() {
     }
   };
 
+  const onGenderHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setGender(e.target.value);
+  };
+
   const onButtonHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     const newAge = ages.filter((_age) => e.currentTarget.value !== _age);
     setAges(newAge);
   };
 
-  const onGenderHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    let selectedGender = e.target.value;
-    selectedGender =
-      selectedGender === utils.selectGenderData[0]
-        ? "f"
-        : selectedGender === utils.selectGenderData[1]
-        ? "m"
-        : "";
-
-    setGender(selectedGender);
-  };
   useEffect(() => {
     if (startDate !== "" && +startDate.split("-").join("") < 20170801) {
       alert("조회 기간 시작 날짜는 2017년 8월 1일부터 조회할 수 있습니다.");
@@ -113,58 +109,73 @@ function App() {
     <div className="App">
       <div>
         <Input type="date" value={startDate} onChange={onStartDateHandler}>
-          {utils.labels[0]}
+          {options.labels[0]}
         </Input>
         <Input type="date" value={endDate} onChange={onEndDateHandler}>
-          {utils.labels[1]}
+          {options.labels[1]}
         </Input>
         <Input type="text" value={category} onChange={onCategoryHandler}>
-          {utils.labels[2]}
+          {options.labels[2]}
         </Input>
         <Input type="text" value={keyword} onChange={onKeywordHandler}>
-          {utils.labels[3]}
+          {options.labels[3]}
         </Input>
       </div>
       <div>
         <Selection
           value={timeUnit}
           onChange={onTimeUnitHandler}
-          datas={utils.selectDateData}
+          datas={options.selectDateData}
         >
-          {utils.labels[4]}
+          {options.labels[4]}
         </Selection>
         <Selection
           value={age}
           onChange={onAgeHandler}
-          datas={utils.selcetAgeData}
+          datas={options.selcetAgeData}
         >
-          {utils.labels[5]}
+          {options.labels[5]}
         </Selection>
         <Selection
           value={gender}
           onChange={onGenderHandler}
-          datas={utils.selectGenderData}
+          datas={options.selectGenderData}
         >
-          {utils.labels[6]}
+          {options.labels[6]}
         </Selection>
         <Selection
           value={device}
           onChange={onDeviceHandler}
-          datas={utils.selectDeviceData}
+          datas={options.selectDeviceData}
         >
-          {utils.labels[7]}
+          {options.labels[7]}
         </Selection>
       </div>
-      {ages.map((age, index) => (
-        <button key={index} value={age} onClick={onButtonHandler}>
-          {age} | x
-        </button>
-      ))}
+
+      <div>
+        {ages.map((age, index) => (
+          <button
+            style={{
+              border: "1px solid lightgrey",
+              backgroundColor: "white",
+              margin: "3px",
+              borderRadius: "5px",
+              color: "grey",
+            }}
+            key={index}
+            value={age}
+            onClick={onButtonHandler}
+          >
+            {age} | x
+          </button>
+        ))}
+      </div>
       <Confirm
-        onApiStatusHandler={onApiStatusHandler}
+        onChartStatusHandler={onChartStatusHandler}
         isDisable={isDisable}
         userSelect={userSelect}
       />
+
       {chartStatus && <Chart />}
     </div>
   );

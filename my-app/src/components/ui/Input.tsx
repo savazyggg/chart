@@ -11,7 +11,18 @@ const Input: React.FC<Props> = ({ type, onChange, value, children }) => {
   return (
     <>
       <label htmlFor={value}>{children}</label>
-      <input type={type} onChange={onChange} value={value} id={value} />
+      <input
+        style={{
+          padding: "3px",
+          margin: "10px",
+          borderRadius: "3px",
+          border: "1px solid lightgrey",
+        }}
+        type={type}
+        onChange={onChange}
+        value={value}
+        id={value}
+      />
     </>
   );
 };

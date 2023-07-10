@@ -17,5 +17,5 @@ export interface UserData {
 
 export interface MergedData {
   period: string;
-  [key: string]: string | number;
+  [key: string | number]: string | number;
 }

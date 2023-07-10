@@ -3,8 +3,8 @@ import React from "react";
 const Err = () => {
   return (
     <div>
-      <h2>Somthing is wrong</h2>
-      <p>please check if you write correct information</p>
+      <h2>Something went wrong</h2>
+      <p>Please check if you entered the correct information</p>
     </div>
   );
 };
