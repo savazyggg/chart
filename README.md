@@ -13,7 +13,7 @@ ts-loader 대신 .tsx 확장자를 가진 파일은 컴파일된 결과를 캐�
 
 ## 프로젝트 설명 </br>
 
-<img width="587" alt="스크린샷 2023-06-18 오후 9 46 59" src="https://velog.velcdn.com/images/savazy_gg/post/50818c21-f1a5-41db-bfbe-8fd825e54cea/image.png">
+<img width="800" alt="스크린샷 2023-06-18 오후 9 46 59" src="https://velog.velcdn.com/images/savazy_gg/post/50818c21-f1a5-41db-bfbe-8fd825e54cea/image.png">
 
 ### 기술스택:
 
