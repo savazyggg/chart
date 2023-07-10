@@ -8,7 +8,8 @@
 
 craco를 이용해 프로젝트를 빌드 </br>
 .jsx, .ts, .tsx 확장자를 가진 파일을 바벨 로더(babel-loader)를 이용해 트랜스파일링하도록 설정하였고, exclude에서는 node_modules 폴더에 있는 파일은 트랜스파일링에서 제외하도록 설정하였습니다. options에서는 바벨의 설정을 세부적으로 지정할 수 있습니다.</br>
-.tsx 확장자를 가진 파일은 craco-ts-loader를 이용해 로딩하도록 설정하여 TypeScript 파일을 빌드할 때, ts-loader 대신 craco-ts-loader를 사용할 수 있도록 하였습니다. exclude에서는 이 파일들이 트랜스파일링에서 제외되도록 설정하고, options에서는 transpileOnly 옵션을 사용해 타입 체크를 하지 않도록 설정하였습니다. 이를 통해 빌드 시간을 단축할 수 있습니다.</br>
+ts-loader 대신 .tsx 확장자를 가진 파일은 컴파일된 결과를 캐싱해두었다가, 변경된 파일만 다시 컴파일하여 빌드시간을 단축할 수 있는 craco-ts-loader를 사용할 수 있도록 하였습니다.
+</br>exclude에서는 이 파일들이 트랜스파일링에서 제외되도록 설정하고, options에서는 transpileOnly 옵션을 사용해 타입 체크를 하지 않도록 설정하였습니다. </br>
 
 ## 프로젝트 설명 </br>
 
