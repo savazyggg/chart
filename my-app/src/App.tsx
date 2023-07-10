@@ -15,6 +15,7 @@ function App() {
   const [device, setDevice] = useState("");
   const [gender, setGender] = useState("");
   const [ages, setAges] = useState<string[]>([]);
+  const [age, setAge] = useState("");
   const [chartStatus, setChartStatus] = useState(false);
   const [isDisable, setIsDisable] = useState(true);
 
@@ -63,6 +64,7 @@ function App() {
   };
 
   const onAgeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setAge(e.target.value);
     let selectedAge = e.target.value;
     if (selectedAge === utils.selcetAgeData[0]) {
       setAges(["10", "20", "30", "40", "50", "60"]);
@@ -90,7 +92,6 @@ function App() {
 
     setGender(selectedGender);
   };
-
   useEffect(() => {
     if (startDate !== "" && +startDate.split("-").join("") < 20170801) {
       alert("조회 기간 시작 날짜는 2017년 8월 1일부터 조회할 수 있습니다.");
@@ -133,7 +134,7 @@ function App() {
           {utils.labels[4]}
         </Selection>
         <Selection
-          value={device}
+          value={age}
           onChange={onAgeHandler}
           datas={utils.selcetAgeData}
         >
@@ -147,7 +148,7 @@ function App() {
           {utils.labels[6]}
         </Selection>
         <Selection
-          value={ages}
+          value={device}
           onChange={onDeviceHandler}
           datas={utils.selectDeviceData}
         >

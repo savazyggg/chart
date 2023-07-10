@@ -12,8 +12,6 @@ const Confirm: React.FC<Props> = ({
   isDisable,
   userSelect,
 }) => {
-  console.log("confirm", userSelect);
-
   const dispatch = useDispatch();
 
   function handleClick() {
