@@ -58,5 +58,5 @@ axios, redux-tookit, redux-saga, typeScript, http-proxy-middleware, rechart</br>
      changeOrigin: true,
 ```
 
-를 통하여, 로컬환경에서 http://localhost:3000/api로 시작되는 요청을 https://openapi.naver.com/api로 프록싱 해줍니다.
+를 통하여, 로컬환경에서 http://localhost:3000/api로 시작되는 요청을 https://openapi.naver.com/api로 프록싱 해줍니다.</br>
 따라서, 브라우저는 클라이언트와 서버의 출처가 다르지만 해당 미들웨어가 만져주면서 같은 것으로 받아들여 CORS문제가 일어나지 않습니다.
