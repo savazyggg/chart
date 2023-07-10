@@ -16,6 +16,6 @@ export interface UserData {
 }
 
 export interface MergedData {
-  기간: string;
+  period: string;
   [key: string]: string | number;
 }

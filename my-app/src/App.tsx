@@ -55,9 +55,9 @@ function App() {
     let selectedDevice = e.target.value;
     selectedDevice =
       selectedDevice === utils.selectDeviceData[1]
-        ? utils.selectDeviceData[3]
+        ? "pc"
         : selectedDevice === utils.selectDeviceData[2]
-        ? utils.selectDeviceData[4]
+        ? "mo"
         : "";
     setDevice(selectedDevice);
   };
@@ -83,15 +83,22 @@ function App() {
     let selectedGender = e.target.value;
     selectedGender =
       selectedGender === utils.selectGenderData[0]
-        ? utils.selectGenderData[2]
+        ? "f"
         : selectedGender === utils.selectGenderData[1]
-        ? utils.selectGenderData[3]
+        ? "m"
         : "";
 
     setGender(selectedGender);
   };
+
+  useEffect(() => {
+    if (startDate !== "" && +startDate.split("-").join("") < 20170801) {
+      alert("조회 기간 시작 날짜는 2017년 8월 1일부터 조회할 수 있습니다.");
+    }
+  }, [startDate]);
   useEffect(() => {
     const isAllSelected =
+      +startDate.split("-").join("") >= 20170801 &&
       startDate &&
       endDate &&
       timeUnit &&

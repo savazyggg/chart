@@ -27,7 +27,7 @@ const Confirm: React.FC<Props> = ({
         style={isDisable ? { opacity: 0.5, cursor: "not-allowed" } : {}}
         onClick={handleClick}
       >
-        확인
+        조회
       </button>
     </>
   );

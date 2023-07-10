@@ -37,8 +37,8 @@ const utils = {
     "50대",
     "60세 이상",
   ],
-  selectGenderData: ["여성", "남성", "f", "m"],
-  selectDeviceData: ["모든 기기", "PC", "Mobile", "pc", "mo"],
+  selectGenderData: ["여성", "남성"],
+  selectDeviceData: ["PC", "Mobile"],
   labels: [
     "시작일자:",
     "종료일자:",
