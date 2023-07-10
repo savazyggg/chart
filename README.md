@@ -15,13 +15,26 @@ ts-loader 대신 .tsx 확장자를 가진 파일은 컴파일된 결과를 캐�
 
 <img width="587" alt="스크린샷 2023-06-18 오후 9 46 59" src="https://velog.velcdn.com/images/savazy_gg/post/50818c21-f1a5-41db-bfbe-8fd825e54cea/image.png">
 
-- 기술스택: axios, redux-tookit, redux-saga, typeScript, http-proxy-middleware, rechart</br>
+### 기술스택:
+
+axios, redux-tookit, redux-saga, typeScript, http-proxy-middleware, rechart</br>
+
+### 기능구현:
+
+연령별 트렌드 조회의 파라미터 (startDate, endDate, timeUnit, category, keyword, device, gender, ages)를 사용자가 입력 할 수 있는 페이지를 제작한다.
+
+- 시작일자: 2017년 8월 1일 이전 날짜는 조회 불가능으로 해당 부분에 알림 추가
+- 다중 선택: ages는 다중 선택이 가능함으로 유저입장에서 어떤 부분을 선택했는지 볼 수 있도록 버튼 추가, 해당 버튼 클릭하면 해당 나이 선택 취소
+- 조회 버튼 비활성화: 필수로 선택해야 되는 값이 선택이 되지 않았거나, 2017년 8월 1일 이전 날짜 선택시 버튼 비활성화
+- 유저 선택한 값으로 input, select 박스가 보여지며 유저가 선택한 값과 fetch되어 차트로 보이는 데이터는 함께 봐야함으로 해당 박스들 초기화 하지 않음.
+- 차트 토글:
+- 1)persist에 유저의 데이터 항목이 남아있으면 새로고침해도 차트는 유지됨.
+- 2. persist에 데이터가 없거나, 필수값 입력후 조회 클릭하지 않았다면 차트는 보여지지 않음.
+- Naver Open API 활용한 데이터 fetch
 
 ### 선택구현 사항 체크:
 
-- Antd를 활용하여 화면을 꾸민다. (디자인은 자유)
 - Redux-Persist를 활용하여 새로고침 시, 연령별 트렌드 조회의 파라미터가 유지되도록 구성한다.
-- Custom Hook에서 비즈니스 로직, 상태관리, 비동기처리를 따로 처리한다.
 
 ## React에서 오픈 API 사용시 CORS에러
 

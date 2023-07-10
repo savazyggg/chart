@@ -109,7 +109,7 @@ function App() {
     const localStorageData = localStorage.getItem("persist:root");
     const persistData = localStorageData && JSON.parse(localStorageData);
     const persistUserData = JSON.parse(persistData.user);
-    if (persistUserData.value.data) {
+    if (persistUserData.value.data[0]) {
       setChartStatus(true);
     }
   }, []);
