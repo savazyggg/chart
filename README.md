@@ -2,17 +2,16 @@
 
 ## 지원자 정보
 
-### 이름:
+### 이름: 이윤지</br>
 
-이윤지</br>
-
-#### 빌드 방법 :
+## 빌드 방법 :
 
 craco를 이용해 프로젝트를 빌드 </br>
 .jsx, .ts, .tsx 확장자를 가진 파일을 바벨 로더(babel-loader)를 이용해 트랜스파일링하도록 설정하였고, exclude에서는 node_modules 폴더에 있는 파일은 트랜스파일링에서 제외하도록 설정하였습니다. options에서는 바벨의 설정을 세부적으로 지정할 수 있습니다.</br>
 .tsx 확장자를 가진 파일은 craco-ts-loader를 이용해 로딩하도록 설정하여 TypeScript 파일을 빌드할 때, ts-loader 대신 craco-ts-loader를 사용할 수 있도록 하였습니다. exclude에서는 이 파일들이 트랜스파일링에서 제외되도록 설정하고, options에서는 transpileOnly 옵션을 사용해 타입 체크를 하지 않도록 설정하고 있습니다. 이를 통해 빌드 시간을 단축할 수 있습니다.</br>
 
-프로젝트 설명 :</br>
+## 프로젝트 설명 :</br>
+
 <img width="587" alt="스크린샷 2023-06-18 오후 9 46 59" src="https://velog.velcdn.com/images/savazy_gg/post/50818c21-f1a5-41db-bfbe-8fd825e54cea/image.png">
 
 - 기술스택: axios, redux-tookit, redux-saga, typeScript, http-proxy-middleware, rechart</br>
