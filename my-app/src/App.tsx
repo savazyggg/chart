@@ -5,7 +5,7 @@ import Selection from "./components/ui/Selection";
 import Chart from "./components/Chart";
 import { UserSelect } from "./assets/types";
 import options from "./assets/options";
-import "./App.css";
+
 function App() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -115,7 +115,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div style={{ marginTop: "5px" }}>
       <div>
         <Input type="date" value={startDate} onChange={onStartDateHandler}>
           {options.labels[0]}
