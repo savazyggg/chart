@@ -1,26 +1,24 @@
 import { AxiosResponse } from "axios";
 import { call, put, takeLatest } from "redux-saga/effects";
 import fetchData from "./api/naverApi";
+import { UserSelect } from "./assets/types";
 import { getUsersDataSuccess } from "./store/userSlice";
 
 interface GetUsersDataFetchAction {
   type: "user/getUsersDataFetch";
-  payload: {
-    startDate: string;
-    endDate: string;
-    timeUnit: string;
-    title: string;
-    keyword: string[];
-    data: { [key: string]: { [key: string]: number }[] };
-  };
+  payload: UserSelect;
 }
 
+type FetchData = (userInfo: UserSelect) => Promise<AxiosResponse<any, any>>;
 type UserAction = GetUsersDataFetchAction;
 function* ageGetUsersDatafetch(action: UserAction) {
   const userSelect = action.payload;
   try {
-    const response: AxiosResponse = yield call(fetchData, userSelect);
-    console.log("res", response);
+    const response: AxiosResponse = yield call<FetchData>(
+      fetchData,
+      userSelect
+    );
+
     yield put(
       getUsersDataSuccess({
         startDate: response.data.startDate,
