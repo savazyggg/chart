@@ -6,6 +6,7 @@ ts-loader 대신 .tsx 확장자를 가진 파일은 컴파일된 결과를 캐�
 </br>exclude에서는 이 파일들이 트랜스파일링에서 제외되도록 설정하고, options에서는 transpileOnly 옵션을 사용해 타입 체크를 하지 않도록 설정하였습니다. </br>
 
 ## 프로젝트 설명 </br>
+![화면 기록 2023-07-21 오후 5 00 17](https://github.com/savazyggg/chart/assets/122354302/e7506968-af82-4f39-8d77-1f98c252317c)
 
 <img width="900" alt="스크린샷 2023-06-18 오후 9 46 59" src="https://velog.velcdn.com/images/savazy_gg/post/50818c21-f1a5-41db-bfbe-8fd825e54cea/image.png">
 https://github.com/savazyggg/chart/assets/122354302/1c5e6e55-ffed-415c-abaf-ce0479ec4b56
