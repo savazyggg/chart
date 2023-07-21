@@ -27,11 +27,8 @@ axios, redux-tookit, redux-saga, typeScript, http-proxy-middleware, rechart</br>
 1.  persist에 유저의 데이터 항목이 남아있으면 새로고침해도 차트는 유지됨.
 2.  persist에 데이터가 없거나, 필수값 입력후 조회 클릭하지 않았다면 차트는 보여지지 않음.
 
-
-### 선택구현 사항 체크:
-
-- Redux-Persist를 활용하여 새로고침 시, 연령별 트렌드 조회의 파라미터가 유지되도록 구성한다.
-
+- Redux-Persist를 활용하여 새로고침 시, 연령별 트렌드 조회의 파라미터가 유지되도록 구성
+  
 ## React에서 오픈 API 사용시 CORS에러
 
 ### 이유</br>
