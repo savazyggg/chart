@@ -1,6 +1,7 @@
 import axios from "axios";
+import { UserSelect } from "../assets/types";
 
-const fetchData = async (userInfo) => {
+const fetchData = async (userInfo: UserSelect) => {
   const client_id = process.env.REACT_APP_NAVER_CLIENT_ID;
   const client_secret = process.env.REACT_APP_NAVER_CLIENT_SECRET;
   const api_url = "api/v1/datalab/shopping/category/keyword/age";
