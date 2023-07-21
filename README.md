@@ -8,6 +8,8 @@ ts-loader 대신 .tsx 확장자를 가진 파일은 컴파일된 결과를 캐�
 ## 프로젝트 설명 </br>
 
 <img width="900" alt="스크린샷 2023-06-18 오후 9 46 59" src="https://velog.velcdn.com/images/savazy_gg/post/50818c21-f1a5-41db-bfbe-8fd825e54cea/image.png">
+https://github.com/savazyggg/chart/assets/122354302/1c5e6e55-ffed-415c-abaf-ce0479ec4b56
+
 naver openAPI를 활용하여 유저의 인풋값에 따라 요청을 보낸 뒤 데이터를 응답받고 해당 데이터를 차트로 그려주어 보기 쉽게 데이터 분석을 할 수 있도록 도와줍니다.
 
 ### 기술스택:
